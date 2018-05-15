@@ -29,14 +29,12 @@ public class sampleJobService extends JobService {
                     if (jobCancelled) { // if true it will stop the loop and return
                         return;
                     }
-
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-
                 Log.d(TAG, "Job finished");
                 jobFinished(params, false); //Finish the job when background work is finished
             }
