@@ -6,12 +6,10 @@ package com.example.eldho.jobschedulersample;
  * Minimum API level 21*/
 
 /**
- * create jobService class <The code or job which runs is inside this class />
+ * create startJobService class <The code or job which runs is inside this class />
  * in Manifest add the service
  * */
-import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,27 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void scheduleJob(View view) {
-        ComponentName componentName = new ComponentName(this, sampleJobService.class);
-        JobInfo info = new JobInfo.Builder(JOBID,componentName)
-
-                /**there is plenty to configure below shown a few examples*/
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setRequiresCharging(false)
-                .setPeriodic(15 * 60 * 1000) // from N it cant be below 15mins
-                .setPersisted(true) // Even after phone get restated the job will restart
-                .build();
-
-        //Reference to the job scheduler and have its scheduler job with our info object
-        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        int result = jobScheduler.schedule(info);
-
-        //Check whether the job schedule is successful or not
-        if (result==JobScheduler.RESULT_SUCCESS){
-            Log.d(TAG, "Job schedule is successful ");
-        }
-        else {
-            Log.d(TAG, "Job schedule is unSuccessful");
-        }
+        JobInfoClass.startJobService(getApplicationContext());
     }
 
     public void cancelJob(View view) {

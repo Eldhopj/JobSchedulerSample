@@ -4,9 +4,10 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.util.Log;
 
-public class sampleJobService extends JobService {
-    private static final String TAG = "sampleJobService";
+public class SampleJobService extends JobService {
+    private static final String TAG = "SampleJobService";
     private boolean jobCancelled = false;
+
 
     @Override
     public boolean onStartJob(JobParameters params) {
